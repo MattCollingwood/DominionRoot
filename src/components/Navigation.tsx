@@ -17,7 +17,7 @@ export function Navigation() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass-card">
-      <div className="container mx-auto px-4">
+      <div className="px-4 sm:px-6 md:px-8 lg:px-10">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
@@ -29,32 +29,10 @@ export function Navigation() {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={cn(
-                  "px-4 py-2 font-body font-semibold text-sm uppercase tracking-wider transition-all duration-300 relative",
-                  location.pathname === link.path
-                    ? "text-primary text-glow-cyan"
-                    : "text-muted-foreground hover:text-primary"
-                )}
-              >
-                {link.name}
-                {location.pathname === link.path && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-primary glow-cyan" />
-                )}
-              </Link>
-            ))}
-          </div>
-
-          {/* Mobile Menu Button */}
+          {/* Hamburger Menu Button */}
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -62,24 +40,25 @@ export function Navigation() {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Dropdown Navigation - full width on mobile, 25% on desktop */}
       <div
         className={cn(
-          "md:hidden absolute top-16 left-0 right-0 glass-card border-t border-border/50 transition-all duration-300 overflow-hidden",
+          "absolute top-16 glass-card border-t border-border/50 transition-all duration-300 overflow-hidden",
+          "left-0 right-0 md:left-auto md:right-4 md:w-64 lg:right-10",
           isOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
         )}
       >
-        <div className="container mx-auto px-4 py-4 flex flex-col gap-2">
+        <div className="py-2 flex flex-col">
           {navLinks.map((link) => (
             <Link
               key={link.path}
               to={link.path}
               onClick={() => setIsOpen(false)}
               className={cn(
-                "px-4 py-3 font-body font-semibold text-sm uppercase tracking-wider transition-all duration-300 rounded-lg",
+                "w-full px-6 py-3 font-body font-semibold text-sm uppercase tracking-wider transition-all duration-300",
                 location.pathname === link.path
-                  ? "text-primary bg-primary/10 border-l-2 border-primary"
-                  : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+                  ? "text-primary bg-primary/10 border-l-4 border-primary"
+                  : "text-muted-foreground hover:text-primary hover:bg-primary/5 border-l-4 border-transparent"
               )}
             >
               {link.name}
