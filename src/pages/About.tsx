@@ -5,6 +5,7 @@ import halleAvatar from "@/assets/Halle-image.jpg";
 import willyAvatar from "@/assets/Willy-image.jpeg";
 import mattAvatar from "@/assets/Matt-image.jpg";
 import dominionRootAvatar from "@/assets/dominion-root.jpg";
+import YouTubeStats from "@/components/YouTubeStats"
 
 interface TeamMemberProps {
   name: string;
@@ -164,31 +165,7 @@ const About = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            {[
-              { label: "Subscribers", value: "10K+", icon: "🎮" },
-              { label: "Videos", value: "200+", icon: "📹" },
-              { label: "Watch Hours", value: "50K+", icon: "⏱️" },
-              { label: "Community Members", value: "5K+", icon: "🤝" },
-            ].map((stat, index) => (
-              <div
-                key={index}
-                className="glass-card rounded-lg p-6 text-center"
-              >
-                <span className="text-3xl mb-2 block">{stat.icon}</span>
-                <span className="font-display font-bold text-2xl text-primary block">
-                  {stat.value}
-                </span>
-                <span className="font-body text-sm text-muted-foreground">
-                  {stat.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <YouTubeStats />
     </div>
   );
 };
