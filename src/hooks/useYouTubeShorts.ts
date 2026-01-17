@@ -32,7 +32,7 @@ async function fetchLatestShorts(): Promise<YouTubeVideo[]> {
     
     const videosData = await videosResponse.json();
 
-    // Get video details to check duration (shorts are < 60 seconds)
+
     const videoIds = videosData.items.map((item: any) => item.snippet.resourceId.videoId).join(",");
     const detailsResponse = await fetch(
       `https://www.googleapis.com/youtube/v3/videos?part=contentDetails,statistics&id=${videoIds}&key=${API_KEY}`
@@ -40,7 +40,7 @@ async function fetchLatestShorts(): Promise<YouTubeVideo[]> {
     
     const detailsData = await detailsResponse.json();
 
-    // Filter for shorts (duration < 60 seconds) and map to our format
+
     const shorts: YouTubeVideo[] = [];
     
     for (let i = 0; i < videosData.items.length && shorts.length < 6; i++) {
@@ -51,7 +51,7 @@ async function fetchLatestShorts(): Promise<YouTubeVideo[]> {
       
       // Parse ISO 8601 duration (PT1M30S format)
       const duration = details?.contentDetails?.duration || "";
-      const isShort = parseDuration(duration) <= 60;
+      const isShort = parseDuration(duration) <= 90;
       
       if (isShort) {
         const viewCount = parseInt(details?.statistics?.viewCount || "0");
@@ -73,13 +73,13 @@ async function fetchLatestShorts(): Promise<YouTubeVideo[]> {
 }
 
 function parseDuration(duration: string): number {
-  const match = duration.match(/PT(\d+H)?(\d+M)?(\d+S)?/);
+  const match = duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
   if (!match) return 0;
-  
-  const hours = parseInt(match[1]) || 0;
-  const minutes = parseInt(match[2]) || 0;
-  const seconds = parseInt(match[3]) || 0;
-  
+
+  const hours = match[1] ? parseInt(match[1], 10) : 0;
+  const minutes = match[2] ? parseInt(match[2], 10) : 0;
+  const seconds = match[3] ? parseInt(match[3], 10) : 0;
+
   return hours * 3600 + minutes * 60 + seconds;
 }
 
