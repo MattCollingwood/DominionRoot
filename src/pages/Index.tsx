@@ -4,51 +4,15 @@ import { SectionTitle } from "@/components/SectionTitle";
 import { ArrowRight, Play, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
-
-// Placeholder video data - replace with actual YouTube shorts
-const recentShorts = [
-  {
-    title: "Epic Halo Infinite Moment",
-    thumbnail: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=700&fit=crop",
-    videoUrl: "https://www.youtube.com/@DominionRoot",
-    views: "2.5K",
-  },
-  {
-    title: "Clutch Play of the Week",
-    thumbnail: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400&h=700&fit=crop",
-    videoUrl: "https://www.youtube.com/@DominionRoot",
-    views: "1.8K",
-  },
-  {
-    title: "Best Gaming Setup Tour",
-    thumbnail: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=700&fit=crop",
-    videoUrl: "https://www.youtube.com/@DominionRoot",
-    views: "3.2K",
-  },
-];
-
-const moreShorts = [
-  {
-    title: "Pro Tips for Beginners",
-    thumbnail: "https://images.unsplash.com/photo-1493711662062-fa541f7f72ea?w=400&h=700&fit=crop",
-    videoUrl: "https://www.youtube.com/@DominionRoot",
-    views: "4.1K",
-  },
-  {
-    title: "Reaction to New Update",
-    thumbnail: "https://images.unsplash.com/photo-1552820728-8b83bb6b2b0d?w=400&h=700&fit=crop",
-    videoUrl: "https://www.youtube.com/@DominionRoot",
-    views: "1.2K",
-  },
-  {
-    title: "Community Highlights",
-    thumbnail: "https://images.unsplash.com/photo-1560253023-3ec5d502959f?w=400&h=700&fit=crop",
-    videoUrl: "https://www.youtube.com/@DominionRoot",
-    views: "2.9K",
-  },
-];
+import { useYouTubeShorts } from "@/hooks/useYouTubeShorts";
 
 const Index = () => {
+  const { data: shorts, isLoading, error } = useYouTubeShorts();
+
+  // Split shorts into two sections
+  const recentShorts = shorts?.slice(0, 3) || [];
+  const moreShorts = shorts?.slice(3, 6) || [];
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -125,11 +89,25 @@ const Index = () => {
             subtitle="Check out the most recent content from the channel"
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {recentShorts.map((video, index) => (
-              <VideoCard key={index} {...video} />
-            ))}
-          </div>
+          {isLoading && (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">Loading latest shorts...</p>
+            </div>
+          )}
+
+          {error && (
+            <div className="text-center py-12">
+              <p className="text-red-500">Error loading videos. Please try again later.</p>
+            </div>
+          )}
+
+          {!isLoading && !error && recentShorts.length > 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {recentShorts.map((video) => (
+                <VideoCard key={video.id} {...video} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -143,11 +121,13 @@ const Index = () => {
             subtitle="Explore more gaming moments and highlights"
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {moreShorts.map((video, index) => (
-              <VideoCard key={index} {...video} />
-            ))}
-          </div>
+          {!isLoading && !error && moreShorts.length > 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {moreShorts.map((video) => (
+                <VideoCard key={video.id} {...video} />
+              ))}
+            </div>
+          )}
 
           <div className="mt-12 text-center">
             <Button variant="outline" size="lg" asChild>
