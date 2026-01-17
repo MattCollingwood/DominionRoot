@@ -51,7 +51,7 @@ async function fetchLatestShorts(): Promise<YouTubeVideo[]> {
       
       // Parse ISO 8601 duration (PT1M30S format)
       const duration = details?.contentDetails?.duration || "";
-      const isShort = parseDuration(duration) <= 90;
+      const isShort = parseDuration(duration) <= 120;
       
       if (isShort) {
         const viewCount = parseInt(details?.statistics?.viewCount || "0");
@@ -100,3 +100,4 @@ export function useYouTubeShorts() {
     refetchInterval: 10 * 60 * 1000, // Refetch every 10 minutes
   });
 }
+
