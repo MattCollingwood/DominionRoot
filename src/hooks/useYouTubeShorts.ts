@@ -6,9 +6,10 @@ interface YouTubeVideo {
   thumbnail: string;
   videoUrl: string;
   views: string;
+  viewCount: number;
 }
 
-const CHANNEL_ID = "UCm_nQCqi3FqEwGTbfcVHitQ";
+const CHANNEL_ID ="UCm_nQCqi3FqEwGTbfcVHitQ";
 const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
 
 async function fetchLatestShorts(): Promise<YouTubeVideo[]> {
@@ -43,7 +44,7 @@ async function fetchLatestShorts(): Promise<YouTubeVideo[]> {
 
     const shorts: YouTubeVideo[] = [];
     
-    for (let i = 0; i < videosData.items.length && shorts.length < 6; i++) {
+    for (let i = 0; i < videosData.items.length && shorts.length < 1500; i++) {
       const video = videosData.items[i];
       const details = detailsData.items.find(
         (d: any) => d.id === video.snippet.resourceId.videoId
@@ -61,6 +62,7 @@ async function fetchLatestShorts(): Promise<YouTubeVideo[]> {
           thumbnail: video.snippet.thumbnails.high.url,
           videoUrl: `https://www.youtube.com/shorts/${video.snippet.resourceId.videoId}`,
           views: formatViews(viewCount),
+          viewCount: viewCount,
         });
       }
     }
@@ -100,4 +102,3 @@ export function useYouTubeShorts() {
     refetchInterval: 10 * 60 * 1000, // Refetch every 10 minutes
   });
 }
-
