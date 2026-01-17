@@ -14,7 +14,7 @@ const YouTubeStats = () => {
     const fetchYouTubeStats = async () => {
       try {
         const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
-        const CHANNEL_ID = import.meta.env.VITE_YOUTUBE_CHANNEL_ID; 
+        const CHANNEL_ID = import.meta.env."UCm_nQCqi3FqEwGTbfcVHitQ"; 
         
         const response = await fetch(
           `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${API_KEY}`
@@ -116,5 +116,6 @@ const YouTubeStats = () => {
     </section>
   );
 };
+
 
 export default YouTubeStats;
