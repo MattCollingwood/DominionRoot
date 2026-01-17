@@ -4,6 +4,7 @@ import { SectionTitle } from "@/components/SectionTitle";
 import halleAvatar from "@/assets/Halle-image.jpg";
 import willyAvatar from "@/assets/Willy-image.jpeg";
 import mattAvatar from "@/assets/Matt-image.jpg";
+import dominionRootAvatar from "@/assets/dominion-root.jpg";
 
 interface TeamMemberProps {
   name: string;
@@ -79,7 +80,7 @@ const About = () => {
               <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
                 <div>
                   <img
-                    src="\src\assets\dominion-root.jpg"
+                    src={dominionRootAvatar}
                     alt="DominionRoot Avatar"
                     className="w-40 h-40 rounded-2xl object-cover border-4 border-primary/50 glow-cyan"
                   />
