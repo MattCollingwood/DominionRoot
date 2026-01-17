@@ -5,9 +5,13 @@ import { ArrowRight, Play, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
 import { useYouTubeShorts } from "@/hooks/useYouTubeShorts";
+import { useTikTokLiveStatus } from "@/hooks/useTikTokLiveStatus";
 
 const Index = () => {
   const { data: shorts, isLoading, error } = useYouTubeShorts();
+  const { data: liveStatus } = useTikTokLiveStatus();
+
+  const showLiveBadge = liveStatus?.isLive ?? import.meta.env.DEV;
 
   // Split shorts into two sections
   const recentShorts = shorts?.slice(0, 3) || [];
@@ -32,19 +36,26 @@ const Index = () => {
 
         {/* Content */}
         <div className="relative z-10 container mx-auto px-4 text-center pt-20">
-          <div className="animate-float">
-            <div className="inline-block mb-6">
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm">
-                <div className="w-2 h-2 rounded-full bg-primary animate-pulse-glow" />
-                <span className="text-sm font-body text-primary uppercase tracking-wider">
-                  Live on YouTube
-                </span>
-              </div>
+          {showLiveBadge && (
+            <div className="animate-float">
+              <a 
+                href="https://www.tiktok.com/@dominionroot/live"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mb-6 transition-transform hover:scale-105"
+              >
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-sm hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 cursor-pointer">
+                  <div className="w-2 h-2 rounded-full bg-primary animate-pulse-glow" />
+                  <span className="text-sm font-body text-primary uppercase tracking-wider">
+                    Live on TikTok
+                  </span>
+                </div>
+              </a>
             </div>
-          </div>
+          )}
 
           <h1 className="font-display font-bold text-5xl md:text-7xl lg:text-8xl mb-6">
-            <span className="text-foreground">DOMINION</span>
+            <span className="text-foreground">DOMINION </span>
             <span className="text-primary text-glow-cyan">ROOT</span>
           </h1>
 
@@ -156,7 +167,7 @@ const Index = () => {
               Join the <span className="text-primary text-glow-cyan">Community</span>
             </h2>
             <p className="font-body text-lg text-muted-foreground mb-8">
-              Be part of the DominionRoot family. Connect with fellow Spartans, 
+              Be part of the Dominion Root family. Connect with fellow Spartans, 
               get exclusive updates, and never miss an epic moment.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -177,6 +188,9 @@ const Index = () => {
       </section>
     </div>
   );
+};
+
+export default Index;
 };
 
 export default Index;
