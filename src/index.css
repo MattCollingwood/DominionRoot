@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Halo-inspired dark theme */
+    --background: 220 25% 6%;
+    --foreground: 200 20% 95%;
+
+    --card: 220 25% 10%;
+    --card-foreground: 200 20% 95%;
+
+    --popover: 220 25% 8%;
+    --popover-foreground: 200 20% 95%;
+
+    /* Cyan/Teal primary - Halo shield color */
+    --primary: 187 85% 53%;
+    --primary-foreground: 220 25% 6%;
+
+    /* Dark secondary */
+    --secondary: 220 20% 15%;
+    --secondary-foreground: 200 20% 95%;
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 200 10% 60%;
+
+    /* Accent - Orange like Halo energy */
+    --accent: 25 95% 55%;
+    --accent-foreground: 220 25% 6%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 200 30% 20%;
+    --input: 220 20% 15%;
+    --ring: 187 85% 53%;
+
+    --radius: 0.5rem;
+
+    /* Custom Halo colors */
+    --glow-cyan: 187 85% 53%;
+    --glow-orange: 25 95% 55%;
+    --surface-glass: 220 25% 12%;
+    --hex-pattern: 220 20% 15%;
+
+    --sidebar-background: 220 25% 8%;
+    --sidebar-foreground: 200 20% 95%;
+    --sidebar-primary: 187 85% 53%;
+    --sidebar-primary-foreground: 220 25% 6%;
+    --sidebar-accent: 220 20% 15%;
+    --sidebar-accent-foreground: 200 20% 95%;
+    --sidebar-border: 200 30% 20%;
+    --sidebar-ring: 187 85% 53%;
+  }
+
+  .dark {
+    --background: 220 25% 6%;
+    --foreground: 200 20% 95%;
+    --card: 220 25% 10%;
+    --card-foreground: 200 20% 95%;
+    --popover: 220 25% 8%;
+    --popover-foreground: 200 20% 95%;
+    --primary: 187 85% 53%;
+    --primary-foreground: 220 25% 6%;
+    --secondary: 220 20% 15%;
+    --secondary-foreground: 200 20% 95%;
+    --muted: 220 15% 18%;
+    --muted-foreground: 200 10% 60%;
+    --accent: 25 95% 55%;
+    --accent-foreground: 220 25% 6%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 200 30% 20%;
+    --input: 220 20% 15%;
+    --ring: 187 85% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .glow-cyan {
+    box-shadow: 0 0 20px hsl(var(--glow-cyan) / 0.4),
+                0 0 40px hsl(var(--glow-cyan) / 0.2),
+                0 0 60px hsl(var(--glow-cyan) / 0.1);
+  }
+
+  .glow-orange {
+    box-shadow: 0 0 20px hsl(var(--glow-orange) / 0.4),
+                0 0 40px hsl(var(--glow-orange) / 0.2);
+  }
+
+  .text-glow-cyan {
+    text-shadow: 0 0 10px hsl(var(--glow-cyan) / 0.6),
+                 0 0 20px hsl(var(--glow-cyan) / 0.4),
+                 0 0 30px hsl(var(--glow-cyan) / 0.2);
+  }
+
+  .text-glow-orange {
+    text-shadow: 0 0 10px hsl(var(--glow-orange) / 0.6),
+                 0 0 20px hsl(var(--glow-orange) / 0.4);
+  }
+
+  .glass-card {
+    @apply bg-card/60 backdrop-blur-xl border border-border/50;
+  }
+
+  .hex-border {
+    clip-path: polygon(5% 0%, 95% 0%, 100% 50%, 95% 100%, 5% 100%, 0% 50%);
+  }
+
+  .angular-clip {
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  }
+
+  .gradient-halo {
+    background: linear-gradient(135deg, 
+      hsl(var(--glow-cyan) / 0.1) 0%, 
+      transparent 50%, 
+      hsl(var(--glow-orange) / 0.05) 100%);
+  }
+
+  .border-glow {
+    border: 1px solid hsl(var(--glow-cyan) / 0.3);
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.7);
+}
