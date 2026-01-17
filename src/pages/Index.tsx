@@ -11,7 +11,9 @@ const Index = () => {
 
   // Split shorts into two sections
   const recentShorts = shorts?.slice(0, 3) || [];
-  const moreShorts = shorts?.slice(3, 6) || [];
+  const topShorts = shorts
+    ? [...shorts].sort((a, b) => b.viewCount - a.viewCount).slice(0, 3)
+    : [];
 
   return (
     <div className="min-h-screen">
@@ -47,8 +49,7 @@ const Index = () => {
           </h1>
 
           <p className="font-body text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Gaming content, epic moments, and community vibes. 
-            Join the Spartan journey.
+            Making Halo's deep lore, fun!
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -117,13 +118,13 @@ const Index = () => {
         
         <div className="container mx-auto px-4">
           <SectionTitle
-            title="More Content"
-            subtitle="Explore more gaming moments and highlights"
+            title="Popular Content"
+            subtitle="Explore the highlights"
           />
 
-          {!isLoading && !error && moreShorts.length > 0 && (
+          {!isLoading && !error && topShorts.length > 0 && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {moreShorts.map((video) => (
+              {topShorts.map((video) => (
                 <VideoCard key={video.id} {...video} />
               ))}
             </div>
@@ -155,7 +156,7 @@ const Index = () => {
               Join the <span className="text-primary text-glow-cyan">Community</span>
             </h2>
             <p className="font-body text-lg text-muted-foreground mb-8">
-              Be part of the DominionRoot family. Connect with fellow gamers, 
+              Be part of the DominionRoot family. Connect with fellow Spartans, 
               get exclusive updates, and never miss an epic moment.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
