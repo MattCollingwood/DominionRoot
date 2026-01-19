@@ -1,59 +1,8 @@
 import { Youtube, MessageCircle, Heart, Gamepad2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SectionTitle } from "@/components/SectionTitle";
-import halleAvatar from "@/assets/Halle-image.jpg";
-import willyAvatar from "@/assets/Willy-image.jpeg";
-import mattAvatar from "@/assets/Matt-image.jpg";
+import { Link } from "react-router-dom";
 import dominionRootAvatar from "@/assets/dominion-root.jpg";
 import YouTubeStats from "@/components/YouTubeStats";
-
-interface TeamMemberProps {
-  name: string;
-  role: string;
-  avatar: string;
-  description: string;
-}
-
-const teamMembers: TeamMemberProps[] = [
-  {
-    name: "Halle",
-    role: "Creative Designer",
-    avatar: halleAvatar,
-    description: "Crafting engaging visual content to keep the community connected.",
-  },
-  {
-    name: "Willy",
-    role: "Graphic Designer",
-    avatar: willyAvatar,
-    description: "Designing eye-catching thumbnails and visuals that grab attention.",
-  },
-  {
-    name: "Matt",
-    role: "Website Developer",
-    avatar: mattAvatar,
-    description: "Building and maintaining the website to keep things running smoothly.",
-  },
-];
-
-function TeamCard({ member }: { member: TeamMemberProps }) {
-  return (
-    <div className="group glass-card rounded-lg p-6 text-center transition-all duration-300 hover:border-primary/50">
-      <div className="relative w-24 h-24 mx-auto mb-4">
-        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md" />
-        <img
-          src={member.avatar}
-          alt={member.name}
-          className="relative w-full h-full rounded-full object-cover border-2 border-primary/30 group-hover:border-primary transition-colors duration-300"
-        />
-      </div>
-      <h3 className="font-display font-bold text-lg text-foreground group-hover:text-primary transition-colors">
-        {member.name}
-      </h3>
-      <p className="font-body text-sm text-primary mb-2">{member.role}</p>
-      <p className="font-body text-sm text-muted-foreground">{member.description}</p>
-    </div>
-  );
-}
 
 const About = () => {
   return (
@@ -67,7 +16,7 @@ const About = () => {
               About <span className="text-primary text-glow-cyan">Dominion Root</span>
             </h1>
             <p className="font-body text-lg text-muted-foreground">
-              The story behind the channel and the people who make it happen.
+              The story behind the channel and the Spartan who makes it happen.
             </p>
           </div>
         </div>
@@ -94,7 +43,7 @@ const About = () => {
                   </h2>
                   <div className="space-y-4 font-body text-muted-foreground leading-relaxed">
                     <p>
-                      Welcome to my corner of the Haloverse! I am a creator and lifelong gamer whose identity was born out of a spontaneous moment during the midnight release of Halo: Reach in 2010. While in college with friends, a sudden change to Xbox Live rules required an immediate gamertag update before I could play. In a moment of panic—and inspired by a bottle of Old Dominion Root Beer sitting nearby—“DominionRoot” was created. What started as a split-second decision became a name that has followed me ever since.
+                      Welcome to my corner of the Haloverse! I am a creator and lifelong gamer whose identity was born out of a spontaneous moment during the midnight release of Halo: Reach in 2010. While in college with friends, a sudden change to Xbox Live rules required an immediate gamertag update before I could play. In a moment of panic—and inspired by a bottle of Old Dominion Root Beer sitting nearby—"DominionRoot" was created. What started as a split-second decision became a name that has followed me ever since.
                     </p>
                     <p>
                       I started this channel to share my in-depth knowledge of Halo with like-minded Spartans. From Halo: The Fall of Reach to the upcoming video game, Halo: Campaign Evolved, I love being part of this community and want to share my passion with you all. Through daily video shorts and community events hosted through my discord and TikTok, I want to create content that brings people together and celebrates our shared love for the Haloverse.
@@ -102,7 +51,7 @@ const About = () => {
                     <p>
                       I can't wait to see all of you at my next event, online, or in the comments section of my videos. Together, let's keep the spirit of Halo alive and thriving!
                     </p>
-                    <p>
+                    <p className="font-display text-primary">
                       Root Out!
                     </p>
                   </div>
@@ -147,25 +96,27 @@ const About = () => {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-16 relative">
-        <div className="absolute inset-0 bg-card/30" />
-        <div className="container mx-auto px-4 relative z-10">
-          <SectionTitle
-            title="The Blue Team"
-            subtitle="The amazing Spartans helping bring this channel to life"
-          />
+      {/* Stats Section */}
+      <YouTubeStats />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {teamMembers.map((member, index) => (
-              <TeamCard key={index} member={member} />
-            ))}
+      {/* CTA to Team Page */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="font-display font-bold text-3xl mb-4">
+              Want to meet the team?
+            </h2>
+            <p className="font-body text-muted-foreground mb-6">
+              Behind every great Spartan is a fireteam. Meet the talented people who help bring Dominion Root to life.
+            </p>
+            <Button variant="halo" size="lg" asChild>
+              <Link to="/team">
+                Meet the Blue Team
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
-
-      {/* Stats Section */}
-      <YouTubeStats />
     </div>
   );
 };
