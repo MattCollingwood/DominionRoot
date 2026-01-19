@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { VideoCard } from "@/components/VideoCard";
+import { VideoCarousel } from "@/components/VideoCarousel";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ArrowRight, Play, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroBg from "@/assets/hero-bg.jpg";
+import wallpaper from "@/assets/wp4014080-waypoint-wallpapers.png";
 import { useYouTubeShorts } from "@/hooks/useYouTubeShorts";
 import { useTikTokLiveStatus } from "@/hooks/useTikTokLiveStatus";
 
@@ -14,9 +14,9 @@ const Index = () => {
   const showLiveBadge = liveStatus?.isLive ?? import.meta.env.DEV;
 
   // Split shorts into two sections
-  const recentShorts = shorts?.slice(0, 3) || [];
+  const recentShorts = shorts?.slice(0, 6) || [];
   const topShorts = shorts
-    ? [...shorts].sort((a, b) => b.viewCount - a.viewCount).slice(0, 3)
+    ? [...shorts].sort((a, b) => b.viewCount - a.viewCount).slice(0, 6)
     : [];
 
   return (
@@ -26,7 +26,7 @@ const Index = () => {
         {/* Background */}
         <div className="absolute inset-0">
           <img
-            src={heroBg}
+            src={wallpaper}
             alt="Hero background"
             className="w-full h-full object-cover"
           />
@@ -114,11 +114,7 @@ const Index = () => {
           )}
 
           {!isLoading && !error && recentShorts.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {recentShorts.map((video) => (
-                <VideoCard key={video.id} {...video} />
-              ))}
-            </div>
+            <VideoCarousel videos={recentShorts} />
           )}
         </div>
       </section>
@@ -134,11 +130,66 @@ const Index = () => {
           />
 
           {!isLoading && !error && topShorts.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {topShorts.map((video) => (
-                <VideoCard key={video.id} {...video} />
-              ))}
-            </div>
+            <VideoCarousel videos={topShorts} />
+          )}
+
+
+          <div className="mt-12 text-center">
+            <Button variant="outline" size="lg" asChild>
+              <a
+                href="https://www.youtube.com/@DominionRoot"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Play className="w-5 h-5" />
+                View All on YouTube
+              </a>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Halo Vs Section */}
+      <section className="py-24 relative bg-card/30">
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+        
+        <div className="container mx-auto px-4">
+          <SectionTitle
+            title="Halo vs. Series"
+            subtitle="Epic showdowns transcending the galaxies"
+          />
+
+          {!isLoading && !error && topShorts.length > 0 && (
+            <VideoCarousel videos={topShorts} />
+          )}
+
+          <div className="mt-12 text-center">
+            <Button variant="outline" size="lg" asChild>
+              <a
+                href="https://www.youtube.com/@DominionRoot"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Play className="w-5 h-5" />
+                View All on YouTube
+              </a>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Halo Lore Section */}
+      <section className="py-24 relative bg-card/30">
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+        
+        <div className="container mx-auto px-4">
+          <SectionTitle
+            title="Halo Lore"
+            subtitle="Dive into the rich history"
+          />
+
+          {!isLoading && !error && topShorts.length > 0 && (
+            <VideoCarousel videos={topShorts} />
           )}
 
           <div className="mt-12 text-center">
