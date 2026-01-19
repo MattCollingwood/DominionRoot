@@ -9,6 +9,7 @@ const navLinks = [
   { name: "Events", path: "/events" },
   { name: "Merch", path: "/merch" },
   { name: "About", path: "/about" },
+  { name: "Team", path: "/team" },
 ];
 
 export function Navigation() {
