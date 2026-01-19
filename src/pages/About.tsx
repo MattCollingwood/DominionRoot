@@ -97,7 +97,7 @@ const About = () => {
                       Welcome to my corner of the Haloverse! I am a creator and lifelong gamer whose identity was born out of a spontaneous moment during the midnight release of Halo: Reach in 2010. While in college with friends, a sudden change to Xbox Live rules required an immediate gamertag update before I could play. In a moment of panic—and inspired by a bottle of Old Dominion Root Beer sitting nearby—“DominionRoot” was created. What started as a split-second decision became a name that has followed me ever since.
                     </p>
                     <p>
-                      I started this channel to share my in-depth knowledge of Halo with like-minded Spartans. From Halo: The Fall of Reach to the upcoming video game, Halo: Campaign Evolved, I love being part of this community and want to share my passion with you all. Through daily video shorts and community events hosted through my discord and TikTok, I want to create content that brings people together and celebrates our shared love for the UNSC.
+                      I started this channel to share my in-depth knowledge of Halo with like-minded Spartans. From Halo: The Fall of Reach to the upcoming video game, Halo: Campaign Evolved, I love being part of this community and want to share my passion with you all. Through daily video shorts and community events hosted through my discord and TikTok, I want to create content that brings people together and celebrates our shared love for the Haloverse.
                     </p>
                     <p>
                       I can't wait to see all of you at my next event, online, or in the comments section of my videos. Together, let's keep the spirit of Halo alive and thriving!

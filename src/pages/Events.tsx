@@ -25,42 +25,79 @@ const events: EventProps[] = [
     event: true,
   },
   {
-    title: "Dominion Root's Charity Live Stream Event",
-    date: "January 17, 2026",
-    time: "12:00 PM EST",
+    title: "Dominion Root's Marine Monday Stream",
+    date: "January 19, 2026",
+    time: "8:00 PM EST",
     location: "TikTok",
-    description: "In support of National Master Chief Day, I'll be hosting a special charity live stream event to raise funds for Cancer Research.",
+    description: "Come join me as I take on Halo's campaigns on legendary difficulty from the viewpoint of the UNSC Marines!",
     link: "https://www.tiktok.com/@dominionroot/",
     stream: true,
   },
   {
-    title: "Dominion Root's TikTok Live Stream",
+    title: "Dominion Root's Wegendary Wednesday Stream",
     date: "January 21, 2026",
     time: "8:00 PM EST",
     location: "TikTok",
-    description: "Come and join me for weekly live streams of Halo and other content. All skill levels welcome!",
+    description: "Modded Halo? Cursed Campaigns? All on Legendary difficulty? Join me for some wild Halo fun every Wednesday night!",
     link: "https://www.tiktok.com/@dominionroot/",
     stream: true,
   },
   {
-    title: "Dominion Root's TikTok Live Stream",
+    title: "Dominion Root's Marine Monday Stream",
+    date: "January 26, 2026",
+    time: "8:00 PM EST",
+    location: "TikTok",
+    description: "Come join me as I take on Halo's campaigns on legendary difficulty from the viewpoint of the UNSC Marines!",
+    link: "https://www.tiktok.com/@dominionroot/",
+    stream: true,
+  },
+  {
+    title: "Dominion Root's Wegendary Wednesday Stream",
     date: "January 28, 2026",
     time: "8:00 PM EST",
     location: "TikTok",
-    description: "Come and join me for weekly live streams of Halo and other content. All skill levels welcome!",
+    description: "Modded Halo? Cursed Campaigns? All on Legendary difficulty? Join me for some wild Halo fun every Wednesday night!",
     link: "https://www.tiktok.com/@dominionroot/",
     stream: true,
   },
   {
-    title: "Dominion Root's TikTok Live Stream",
+    title: "Dominion Root's Marine Monday Stream",
+    date: "February 2, 2026",
+    time: "8:00 PM EST",
+    location: "TikTok",
+    description: "Come join me as I take on Halo's campaigns on legendary difficulty from the viewpoint of the UNSC Marines!",
+    link: "https://www.tiktok.com/@dominionroot/",
+    stream: true,
+  },
+  {
+    title: "Dominion Root's Wegendary Wednesday Stream",
     date: "February 4, 2026",
     time: "8:00 PM EST",
     location: "TikTok",
-    description: "Come and join me for weekly live streams of Halo and other content. All skill levels welcome!",
+    description: "Modded Halo? Cursed Campaigns? All on Legendary difficulty? Join me for some wild Halo fun every Wednesday night!",
+    link: "https://www.tiktok.com/@dominionroot/",
+    stream: true,
+  },
+  {
+    title: "Dominion Root's Marine Monday Stream",
+    date: "February 9, 2026",
+    time: "8:00 PM EST",
+    location: "TikTok",
+    description: "Come join me as I take on Halo's campaigns on legendary difficulty from the viewpoint of the UNSC Marines!",
+    link: "https://www.tiktok.com/@dominionroot/",
+    stream: true,
+  },
+  {
+    title: "Dominion Root's Wegendary Wednesday Stream",
+    date: "February 11, 2026",
+    time: "8:00 PM EST",
+    location: "TikTok",
+    description: "Modded Halo? Cursed Campaigns? All on Legendary difficulty? Join me for some wild Halo fun every Wednesday night!",
     link: "https://www.tiktok.com/@dominionroot/",
     stream: true,
   },
 ];
+  
 
 function EventCard({ event, index }: { event: EventProps; index: number }) {
   const handleAddToCalendar = () => {
@@ -102,7 +139,7 @@ function EventCard({ event, index }: { event: EventProps; index: number }) {
         </div>
       )}
 
-      <div className="p-6">
+      <div className="p-6 pr-24">
         <div className="flex items-start gap-4 mb-4">
           <div className="flex-shrink-0 w-16 h-16 rounded-lg bg-primary/10 border border-primary/30 flex flex-col items-center justify-center">
             <span className="text-2xl font-display font-bold text-primary">
