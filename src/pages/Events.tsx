@@ -26,26 +26,8 @@ const events: EventProps[] = [
   },
   {
     title: "Dominion Root's Marine Monday Stream",
-    date: "January 19, 2026",
-    time: "8:00 PM EST",
-    location: "TikTok",
-    description: "Come join me as I take on Halo's campaigns on legendary difficulty from the viewpoint of the UNSC Marines!",
-    link: "https://www.tiktok.com/@dominionroot/",
-    stream: true,
-  },
-  {
-    title: "Dominion Root's Wegendary Wednesday Stream",
-    date: "January 21, 2026",
-    time: "8:00 PM EST",
-    location: "TikTok",
-    description: "Modded Halo? Cursed Campaigns? All on Legendary difficulty? Join me for some wild Halo fun every Wednesday night!",
-    link: "https://www.tiktok.com/@dominionroot/",
-    stream: true,
-  },
-  {
-    title: "Dominion Root's Marine Monday Stream",
     date: "January 26, 2026",
-    time: "8:00 PM EST",
+    time: "9:15 PM - 12:00 AM EST",
     location: "TikTok",
     description: "Come join me as I take on Halo's campaigns on legendary difficulty from the viewpoint of the UNSC Marines!",
     link: "https://www.tiktok.com/@dominionroot/",
@@ -54,7 +36,7 @@ const events: EventProps[] = [
   {
     title: "Dominion Root's Wegendary Wednesday Stream",
     date: "January 28, 2026",
-    time: "8:00 PM EST",
+    time: "9:15 PM - 12:00 AM EST",
     location: "TikTok",
     description: "Modded Halo? Cursed Campaigns? All on Legendary difficulty? Join me for some wild Halo fun every Wednesday night!",
     link: "https://www.tiktok.com/@dominionroot/",
@@ -63,7 +45,7 @@ const events: EventProps[] = [
   {
     title: "Dominion Root's Marine Monday Stream",
     date: "February 2, 2026",
-    time: "8:00 PM EST",
+    time: "9:15 PM - 12:00 AM EST",
     location: "TikTok",
     description: "Come join me as I take on Halo's campaigns on legendary difficulty from the viewpoint of the UNSC Marines!",
     link: "https://www.tiktok.com/@dominionroot/",
@@ -72,7 +54,7 @@ const events: EventProps[] = [
   {
     title: "Dominion Root's Wegendary Wednesday Stream",
     date: "February 4, 2026",
-    time: "8:00 PM EST",
+    time: "9:15 PM - 12:00 AM EST",
     location: "TikTok",
     description: "Modded Halo? Cursed Campaigns? All on Legendary difficulty? Join me for some wild Halo fun every Wednesday night!",
     link: "https://www.tiktok.com/@dominionroot/",
@@ -81,7 +63,7 @@ const events: EventProps[] = [
   {
     title: "Dominion Root's Marine Monday Stream",
     date: "February 9, 2026",
-    time: "8:00 PM EST",
+    time: "9:15 PM - 12:00 AM EST",
     location: "TikTok",
     description: "Come join me as I take on Halo's campaigns on legendary difficulty from the viewpoint of the UNSC Marines!",
     link: "https://www.tiktok.com/@dominionroot/",
@@ -90,12 +72,30 @@ const events: EventProps[] = [
   {
     title: "Dominion Root's Wegendary Wednesday Stream",
     date: "February 11, 2026",
-    time: "8:00 PM EST",
+    time: "9:15 PM - 12:00 AM EST",
     location: "TikTok",
     description: "Modded Halo? Cursed Campaigns? All on Legendary difficulty? Join me for some wild Halo fun every Wednesday night!",
     link: "https://www.tiktok.com/@dominionroot/",
     stream: true,
   },
+  {
+    title: "Dominion Root's Wegendary Wednesday Stream",
+    date: "February 16, 2026",
+    time: "9:15 PM - 12:00 AM EST",
+    location: "TikTok",
+    description: "Modded Halo? Cursed Campaigns? All on Legendary difficulty? Join me for some wild Halo fun every Wednesday night!",
+    link: "https://www.tiktok.com/@dominionroot/",
+    stream: true,
+  },
+  {
+    title: "Dominion Root's Wegendary Wednesday Stream",
+    date: "February 18, 2026",
+    time: "9:15 PM - 12:00 AM EST",
+    location: "TikTok",
+    description: "Modded Halo? Cursed Campaigns? All on Legendary difficulty? Join me for some wild Halo fun every Wednesday night!",
+    link: "https://www.tiktok.com/@dominionroot/",
+    stream: true,
+  }
 ];
   
 
