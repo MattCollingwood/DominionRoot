@@ -37,9 +37,7 @@ const teamMembers: TeamMemberProps[] = [
     avatar: willyAvatar,
     bio: "Willy is the visual mastermind behind the eye-catching thumbnails and graphics that make Dominion Root stand out. With a talent for turning concepts into compelling visuals, Willy's designs grab attention and draw viewers into the world of Halo lore and gaming content.",
     links: {
-      website: "https://www.williamlandonwriter.com/",
       instagram: "https://www.instagram.com/willylikestodraw/",
-      email: "willy@dominionroot.com",
     },
   },
   {

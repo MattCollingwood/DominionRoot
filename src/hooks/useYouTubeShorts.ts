@@ -14,7 +14,7 @@ const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
 
 async function fetchLatestShorts(): Promise<YouTubeVideo[]> {
   try {
-    // First, get the channel's uploads playlist
+
     const channelResponse = await fetch(
       `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${CHANNEL_ID}&key=${API_KEY}`
     );
@@ -50,7 +50,7 @@ async function fetchLatestShorts(): Promise<YouTubeVideo[]> {
         (d: any) => d.id === video.snippet.resourceId.videoId
       );
       
-      // Parse ISO 8601 duration (PT1M30S format)
+
       const duration = details?.contentDetails?.duration || "";
       const isShort = parseDuration(duration) <= 120;
       
