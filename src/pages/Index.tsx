@@ -6,10 +6,15 @@ import { Link } from "react-router-dom";
 import wallpaper from "@/assets/wp4014080-waypoint-wallpapers.png";
 import { useYouTubeShorts } from "@/hooks/useYouTubeShorts";
 import { useTikTokLiveStatus } from "@/hooks/useTikTokLiveStatus";
+import { useHaloVsVideos, useHaloLoreVideos } from "@/hooks/useYouTubeVideosByTag";
 
 const Index = () => {
   const { data: shorts, isLoading, error } = useYouTubeShorts();
   const { data: liveStatus } = useTikTokLiveStatus();
+  
+  // New hooks for filtered videos
+  const { data: haloVsVideos, isLoading: isLoadingVs, error: errorVs } = useHaloVsVideos();
+  const { data: haloLoreVideos, isLoading: isLoadingLore, error: errorLore } = useHaloLoreVideos();
 
   const showLiveBadge = liveStatus?.isLive ?? import.meta.env.DEV;
 
@@ -18,6 +23,25 @@ const Index = () => {
   const topShorts = shorts
     ? [...shorts].sort((a, b) => b.viewCount - a.viewCount).slice(0, 6)
     : [];
+
+  // Format the filtered videos for VideoCarousel
+  const haloVsCarouselVideos = haloVsVideos?.map(video => ({
+    id: video.id,
+    title: video.title,
+    thumbnail: video.thumbnail,
+    videoUrl: video.videoUrl,
+    views: "N/A", // Optional: you can add view count if needed
+    viewCount: 0
+  })) || [];
+
+  const haloLoreCarouselVideos = haloLoreVideos?.map(video => ({
+    id: video.id,
+    title: video.title,
+    thumbnail: video.thumbnail,
+    videoUrl: video.videoUrl,
+    views: "N/A",
+    viewCount: 0
+  })) || [];
 
   return (
     <div className="min-h-screen">
@@ -133,7 +157,6 @@ const Index = () => {
             <VideoCarousel videos={topShorts} />
           )}
 
-
           <div className="mt-12 text-center">
             <Button variant="outline" size="lg" asChild>
               <a
@@ -149,7 +172,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Halo Vs Section */}
+      {/* Halo Vs Section - NOW FILTERED BY TAG */}
       <section className="py-24 relative bg-card/30">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
         
@@ -159,8 +182,28 @@ const Index = () => {
             subtitle="Epic showdowns transcending the galaxies"
           />
 
-          {!isLoading && !error && topShorts.length > 0 && (
-            <VideoCarousel videos={topShorts} />
+          {isLoadingVs && (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">Loading Halo VS videos...</p>
+            </div>
+          )}
+
+          {errorVs && (
+            <div className="text-center py-12">
+              <p className="text-red-500">Error loading Halo VS videos.</p>
+            </div>
+          )}
+
+          {!isLoadingVs && !errorVs && haloVsCarouselVideos.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">
+                No Halo VS videos found. Make sure videos are tagged with "halovs" in YouTube Studio.
+              </p>
+            </div>
+          )}
+
+          {!isLoadingVs && !errorVs && haloVsCarouselVideos.length > 0 && (
+            <VideoCarousel videos={haloVsCarouselVideos} />
           )}
 
           <div className="mt-12 text-center">
@@ -178,7 +221,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Halo Lore Section */}
+      {/* Halo Lore Section - NOW FILTERED BY TAG */}
       <section className="py-24 relative bg-card/30">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
         
@@ -188,8 +231,28 @@ const Index = () => {
             subtitle="Dive into the rich history"
           />
 
-          {!isLoading && !error && topShorts.length > 0 && (
-            <VideoCarousel videos={topShorts} />
+          {isLoadingLore && (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">Loading Halo Lore videos...</p>
+            </div>
+          )}
+
+          {errorLore && (
+            <div className="text-center py-12">
+              <p className="text-red-500">Error loading Halo Lore videos.</p>
+            </div>
+          )}
+
+          {!isLoadingLore && !errorLore && haloLoreCarouselVideos.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">
+                No Halo Lore videos found. Make sure videos are tagged with "hlore" in YouTube Studio.
+              </p>
+            </div>
+          )}
+
+          {!isLoadingLore && !errorLore && haloLoreCarouselVideos.length > 0 && (
+            <VideoCarousel videos={haloLoreCarouselVideos} />
           )}
 
           <div className="mt-12 text-center">
