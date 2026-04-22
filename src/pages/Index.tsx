@@ -203,7 +203,7 @@ const Index = () => {
           )}
 
           {!isLoadingVs && !errorVs && haloVsCarouselVideos.length > 0 && (
-            <VideoCarousel videos={haloVsCarouselVideos} />
+            <VideoCarousel videos={haloVsCarouselVideos} alwaysCarousel={true} />
           )}
 
           <div className="mt-12 text-center">
