@@ -12,15 +12,18 @@ interface VideoCarouselProps {
     videoUrl: string;
     views: string;
   }>;
+  alwaysCarousel?: boolean;
 }
 
-export function VideoCarousel({ videos }: VideoCarouselProps) {
+export function VideoCarousel({ videos, alwaysCarousel = false }: VideoCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     slidesToScroll: 1,
     breakpoints: {
       "(min-width: 640px)": { slidesToScroll: 2 },
-      "(min-width: 1024px)": { slidesToScroll: 3 },
+      "(min-width: 768px)": { slidesToScroll: 3 },
+      "(min-width: 1024px)": { slidesToScroll: 4 },
+      "(min-width: 1280px)": { slidesToScroll: 5 },
     },
   });
 
@@ -49,20 +52,29 @@ export function VideoCarousel({ videos }: VideoCarouselProps) {
   }, [emblaApi, onSelect]);
 
   return (
-    <div className="relative">
-      {/* Desktop Grid - hidden on mobile */}
-      <div className="hidden md:grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3">
-        {videos.map((video) => (
-          <VideoCard key={video.id} {...video} />
-        ))}
-      </div>
+    <div className="relative group">
+      {/* Desktop Grid - hidden on mobile, unless alwaysCarousel is true */}
+      {!alwaysCarousel && (
+        <div className="hidden md:grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3">
+          {videos.map((video) => (
+            <VideoCard key={video.id} {...video} />
+          ))}
+        </div>
+      )}
 
-      {/* Mobile Carousel */}
-      <div className="md:hidden relative">
+      {/* Mobile Carousel (or always if alwaysCarousel is true) */}
+      <div className={`${!alwaysCarousel ? "md:hidden" : ""} relative`}>
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex gap-3">
             {videos.map((video) => (
-              <div key={video.id} className="flex-[0_0_45%] min-w-0">
+              <div 
+                key={video.id} 
+                className={`min-w-0 ${
+                  alwaysCarousel 
+                    ? "flex-[0_0_85%] sm:flex-[0_0_45%] md:flex-[0_0_30%] lg:flex-[0_0_22%] xl:flex-[0_0_16%]" 
+                    : "flex-[0_0_45%]"
+                }`}
+              >
                 <VideoCard {...video} />
               </div>
             ))}
@@ -75,7 +87,9 @@ export function VideoCarousel({ videos }: VideoCarouselProps) {
             variant="ghost"
             size="icon"
             onClick={scrollPrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 bg-background/80 backdrop-blur-sm border border-primary/30 hover:border-primary/50 hover:bg-primary/10 z-10"
+            className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 ${
+              alwaysCarousel ? "md:-translate-x-4 md:opacity-0 md:group-hover:opacity-100 transition-opacity" : ""
+            } bg-background/80 backdrop-blur-sm border border-primary/30 hover:border-primary/50 hover:bg-primary/10 z-10`}
           >
             <ChevronLeft className="h-5 w-5 text-primary" />
           </Button>
@@ -85,7 +99,9 @@ export function VideoCarousel({ videos }: VideoCarouselProps) {
             variant="ghost"
             size="icon"
             onClick={scrollNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 bg-background/80 backdrop-blur-sm border border-primary/30 hover:border-primary/50 hover:bg-primary/10 z-10"
+            className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 ${
+              alwaysCarousel ? "md:translate-x-4 md:opacity-0 md:group-hover:opacity-100 transition-opacity" : ""
+            } bg-background/80 backdrop-blur-sm border border-primary/30 hover:border-primary/50 hover:bg-primary/10 z-10`}
           >
             <ChevronRight className="h-5 w-5 text-primary" />
           </Button>
