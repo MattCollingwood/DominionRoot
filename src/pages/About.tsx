@@ -83,7 +83,7 @@ const About = () => {
                       </a>
                     </Button>
                     <Button variant="outline" asChild>
-                      <a href="#" target="_blank" rel="noopener noreferrer">
+                      <a href={import.meta.env.VITE_DISCORD_LINK} target="_blank" rel="noopener noreferrer">
                         <MessageCircle className="w-5 h-5" />
                         Join Discord
                       </a>

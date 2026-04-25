@@ -1,17 +1,27 @@
 import { Button } from "@/components/ui/button";
 import { VideoCarousel } from "@/components/VideoCarousel";
 import { SectionTitle } from "@/components/SectionTitle";
-import { ArrowRight, Play, Youtube } from "lucide-react";
+import { ArrowRight, Play, Youtube, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import wallpaper from "@/assets/wp4014080-waypoint-wallpapers.png";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useYouTubeShorts } from "@/hooks/useYouTubeShorts";
 import { useTikTokLiveStatus } from "@/hooks/useTikTokLiveStatus";
 import { useHaloVsVideos, useHaloLoreVideos } from "@/hooks/useYouTubeVideosByTag";
 
+const placeholderMerch = [
+  { id: 1, name: "Spartan Elite Hoodie", price: "$59.99", tag: "Apparel" },
+  { id: 2, name: "Dominion Root Tee", price: "$29.99", tag: "Apparel" },
+  { id: 3, name: "Energy Sword Mug", price: "$19.99", tag: "Accessories" },
+  { id: 4, name: "Lore Master Poster", price: "$24.99", tag: "Art" },
+  { id: 5, name: "UNSC Beanie", price: "$22.99", tag: "Apparel" },
+  { id: 6, name: "Warthog Desk Mat", price: "$34.99", tag: "Accessories" },
+];
+
 const Index = () => {
   const { data: shorts, isLoading, error } = useYouTubeShorts();
   const { data: liveStatus } = useTikTokLiveStatus();
-  
+
   // New hooks for filtered videos
   const { data: haloVsVideos, isLoading: isLoadingVs, error: errorVs } = useHaloVsVideos();
   const { data: haloLoreVideos, isLoading: isLoadingLore, error: errorLore } = useHaloLoreVideos();
@@ -62,7 +72,7 @@ const Index = () => {
         <div className="relative z-10 container mx-auto px-4 text-center pt-20">
           {showLiveBadge && (
             <div className="animate-float">
-              <a 
+              <a
                 href="https://www.tiktok.com/@dominionroot/live"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -118,7 +128,7 @@ const Index = () => {
       {/* Recent Shorts Section */}
       <section className="py-24 relative">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-        
+
         <div className="container mx-auto px-4">
           <SectionTitle
             title="Latest Shorts"
@@ -143,39 +153,10 @@ const Index = () => {
         </div>
       </section>
 
-      {/* More Shorts Section */}
-      <section className="py-24 relative bg-card/30">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-        
-        <div className="container mx-auto px-4">
-          <SectionTitle
-            title="Popular Content"
-            subtitle="Explore the highlights"
-          />
-
-          {!isLoading && !error && topShorts.length > 0 && (
-            <VideoCarousel videos={topShorts} />
-          )}
-
-          <div className="mt-12 text-center">
-            <Button variant="outline" size="lg" asChild>
-              <a
-                href="https://www.youtube.com/@DominionRoot"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Play className="w-5 h-5" />
-                View All on YouTube
-              </a>
-            </Button>
-          </div>
-        </div>
-      </section>
-
       {/* Halo Vs Section - NOW FILTERED BY TAG */}
       <section className="py-24 relative bg-card/30">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-        
+
         <div className="container mx-auto px-4">
           <SectionTitle
             title="Halo vs. Series"
@@ -221,50 +202,64 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Halo Lore Section - NOW FILTERED BY TAG */}
-      <section className="py-24 relative bg-card/30">
+      {/* Official Merchandise Section */}
+      <section className="py-24 relative overflow-hidden bg-background">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-        
+        <div className="absolute top-1/2 right-0 w-72 h-72 rounded-full bg-primary/5 blur-[100px] -z-10" />
+
         <div className="container mx-auto px-4">
           <SectionTitle
-            title="Halo Lore"
-            subtitle="Dive into the rich history"
+            title="Official Merchandise"
+            subtitle="Gear up with Dominion Root exclusive apparel and accessories"
           />
 
-          {isLoadingLore && (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground">Loading Halo Lore videos...</p>
-            </div>
-          )}
-
-          {errorLore && (
-            <div className="text-center py-12">
-              <p className="text-red-500">Error loading Halo Lore videos.</p>
-            </div>
-          )}
-
-          {!isLoadingLore && !errorLore && haloLoreCarouselVideos.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground">
-                No Halo Lore videos found. Make sure videos are tagged with "hlore" in YouTube Studio.
-              </p>
-            </div>
-          )}
-
-          {!isLoadingLore && !errorLore && haloLoreCarouselVideos.length > 0 && (
-            <VideoCarousel videos={haloLoreCarouselVideos} />
-          )}
-
+          <div className="mt-12 px-0 md:px-12">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4">
+                {placeholderMerch.map((item) => (
+                  <CarouselItem key={item.id} className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                    <div className="group relative overflow-hidden rounded-xl border border-primary/20 bg-card/40 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:bg-card/60 hover:shadow-[0_0_30px_-5px_rgba(var(--primary),0.2)]">
+                      {/* Placeholder Image Area */}
+                      <div className="aspect-square bg-gradient-to-br from-background via-muted/50 to-primary/10 flex flex-col items-center justify-center p-6 relative">
+                        <ShoppingCart className="w-16 h-16 text-primary/40 group-hover:scale-110 group-hover:text-primary transition-all duration-500" />
+                        <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-xs font-semibold text-primary backdrop-blur-md">
+                          {item.tag}
+                        </div>
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="p-6">
+                        <h3 className="font-display font-semibold text-lg text-foreground mb-2 group-hover:text-primary transition-colors">
+                          {item.name}
+                        </h3>
+                        <div className="flex items-center justify-between">
+                          <span className="text-xl font-bold text-primary">{item.price}</span>
+                          <Button variant="ghost" size="sm" className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity sm:translate-y-2 sm:group-hover:translate-y-0 text-primary hover:text-primary">
+                            View Item
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden md:flex border-primary/30 hover:bg-primary/20 hover:text-primary bg-background/80 backdrop-blur-sm" />
+              <CarouselNext className="hidden md:flex border-primary/30 hover:bg-primary/20 hover:text-primary bg-background/80 backdrop-blur-sm" />
+            </Carousel>
+          </div>
+          
           <div className="mt-12 text-center">
-            <Button variant="outline" size="lg" asChild>
-              <a
-                href="https://www.youtube.com/@DominionRoot"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Play className="w-5 h-5" />
-                View All on YouTube
-              </a>
+            <Button variant="outline" size="lg" asChild className="group hover:border-primary/50">
+              <Link to="#">
+                <ShoppingCart className="w-5 h-5 mr-2 group-hover:text-primary transition-colors" />
+                Visit the Store
+              </Link>
             </Button>
           </div>
         </div>
@@ -274,28 +269,23 @@ const Index = () => {
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 gradient-halo" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-primary/10 blur-3xl" />
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display font-bold text-3xl md:text-5xl mb-6">
               Join the <span className="text-primary text-glow-cyan">Community</span>
             </h2>
             <p className="font-body text-lg text-muted-foreground mb-8">
-              Be part of the Dominion Root family. Connect with fellow Spartans, 
+              Be part of the Dominion Root family. Connect with fellow Spartans,
               get exclusive updates, and never miss an epic moment.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button variant="halo" size="lg" asChild>
-                <a href="#" target="_blank" rel="noopener noreferrer">
+                <a href={import.meta.env.VITE_DISCORD_LINK} target="_blank" rel="noopener noreferrer">
                   Join Discord
                 </a>
               </Button>
-              <Button variant="accent" size="lg" asChild>
-                <Link to="/events">
-                  Upcoming Events
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-              </Button>
+
             </div>
           </div>
         </div>
