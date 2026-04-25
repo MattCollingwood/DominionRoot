@@ -27,7 +27,7 @@ const teamMembers: TeamMemberProps[] = [
     bio: "Halle brings creativity and vision to every project, crafting engaging visual content that keeps the Dominion Root community connected and inspired. With an eye for detail and a passion for storytelling, Halle ensures that every piece of content resonates with fans of the Haloverse.",
     links: {
       website: "https://www.hallekphotography.com",
-      instagram: "https://www.instagram.com/halle_marie_15/",
+      instagram: "https://www.instagram.com/hallekphotography",
       email: "hallekphotography@gmail.com",
     },
   },
